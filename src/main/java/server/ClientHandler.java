@@ -36,20 +36,16 @@ class ClientHandler implements Runnable
 			{ 
 				// receive the string 
 				received = dis.readUTF(); 
-
 				System.out.println(received); 
-
 				if(received.equals("logout")){ 
 					this.isloggedin=false; 
 					this.s.close(); 
 					break; 
 				} 
-
 				// break the string into message and recipient part 
-				StringTokenizer st = new StringTokenizer(received, "#"); 
-				String MsgToSend = st.nextToken(); 
+				StringTokenizer st = new StringTokenizer(received, "@"); 
 				String recipient = st.nextToken(); 
-
+				String MsgToSend = st.nextToken(); 
 				// search for the recipient in the connected devices list. 
 				// ar is the vector storing client of active users 
 				for (ClientHandler mc : Server.ar)  
